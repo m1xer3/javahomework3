@@ -1,16 +1,19 @@
 package ru.danilsibgatullin.homeworklesson2.BroadCastChat.serverside.services;
 
-import ru.danilsibgatullin.homeworklesson1.BroadCastChat.serverside.services.MyServer;
+import ru.danilsibgatullin.homeworklesson2.BroadCastChat.serverside.services.MyServer;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
 import java.net.SocketException;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 
 public class ClientHandler {
-    private ru.danilsibgatullin.homeworklesson1.BroadCastChat.serverside.services.MyServer myServer;
+    private MyServer myServer;
     private Socket socket;
     private DataInputStream dis;
     private DataOutputStream dos;
@@ -31,7 +34,9 @@ public class ClientHandler {
             new Thread(() -> {
                 try {
                     authentication();
-                    readMessage();
+                    if (isAuthorized){
+                        readMessage();
+                    }
                 } catch (IOException ignored) {
                     ignored.printStackTrace();
                 } finally {
@@ -64,14 +69,16 @@ public class ClientHandler {
         }
     }
 
+    //TODO проверка авторизации через БД
     public void authentication() throws IOException {
 
             String str = dis.readUTF();
             if (str.startsWith("/auth")) { //  /auth login password
                 String[] arr = str.split("\\s");
-                String nick = myServer
-                        .getAuthService()
-                        .getNickByLoginAndPassword(arr[1], arr[2]);
+
+                //проверка авторизация через БД
+                String nick = getNickIfAuthorityIsOK(arr[1], arr[2]);
+
                 if (nick != null) {
                     if (!myServer.isNickBusy(nick)) {
                         isAuthorized = true;
@@ -98,7 +105,7 @@ public class ClientHandler {
 
                 Thread tread = new Thread(()->{
                     try {
-                        Thread.sleep(30000);
+                        Thread.sleep(1800000);
                         System.out.println("Timeout for enter message");
                         if(shouldKillTimeoutMessgae){
                             sendMessage("/finish");
@@ -129,6 +136,13 @@ public class ClientHandler {
                     if(messageFromClient.equals("/list")){
                         myServer.getChatMembers();
                     }
+                    if(messageFromClient.startsWith("/change")){
+                        String[] arr = messageFromClient.split("::");
+                        String oldNick = name;
+                        changeUserNick(arr[1]);
+                        myServer.getChatMembers();
+                        myServer.broadcastMessage("User "+oldNick+" change nick to " + name);
+                    }
                 }
                 else {
                     myServer.broadcastMessage(name + ": " + messageFromClient);
@@ -155,6 +169,59 @@ public class ClientHandler {
             dos.close();
             socket.close();
         } catch (IOException ignored) {
+        }
+    }
+
+    private String getNickIfAuthorityIsOK(String login, String password){
+        Statement statement = null;
+        String nick =null;
+        try{
+            statement = ConnectDB.getConnectDB().createStatement();
+            ResultSet set = statement.executeQuery("SELECT nick FROM USERS WHERE LOGIN = '"+login+"' and PASSWORD ='"+password+"'");
+            while(set.next()){
+                nick= set.getString("nick");
+            }
+        }
+        catch (SQLException | ClassNotFoundException e){
+            e.printStackTrace();
+        }
+        finally {
+            if (statement != null){
+                try{
+                    statement.close();
+                }
+                catch (SQLException e){
+                    e.printStackTrace();
+                }
+            }
+        }
+        return nick;
+    };
+
+    private void changeUserNick (String newNick){
+        if(myServer.isNickBusy(newNick)){
+            sendMessage("/nickbusy");
+            return;
+        }
+        Statement statement = null;
+        try{
+            statement = ConnectDB.getConnectDB().createStatement();
+            statement.executeUpdate("UPDATE USERS SET nick ='"+newNick+"' WHERE nick ='"+name+"'");
+            name = newNick;
+            sendMessage("/nickchangeok::"+name);
+        }
+        catch (SQLException | ClassNotFoundException e){
+            e.printStackTrace();
+        }
+        finally {
+            if(statement!=null){
+                try{
+                    statement.close();
+                }
+                catch (SQLException e){
+                    e.printStackTrace();
+                }
+            }
         }
     }
 

@@ -1,7 +1,8 @@
 package ru.danilsibgatullin.homeworklesson2.BroadCastChat.clientside.ui;
 
-import ru.danilsibgatullin.BroadCastChat.serverside.services.ClientHandler;
-import ru.danilsibgatullin.homeworklesson1.BroadCastChat.clientside.ui.AutorityInterface;
+import ru.danilsibgatullin.homeworklesson2.BroadCastChat.serverside.services.ClientHandler;
+import ru.danilsibgatullin.homeworklesson2.BroadCastChat.clientside.ui.AutorityInterface;
+import ru.danilsibgatullin.homeworklesson2.BroadCastChat.serverside.services.ConnectDB;
 
 import javax.swing.*;
 import java.awt.*;
@@ -9,7 +10,8 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
-
+import java.sql.SQLException;
+import java.sql.Statement;
 
 
 public class ChatInterface extends JFrame {
@@ -23,9 +25,11 @@ public class ChatInterface extends JFrame {
     private String myNick="";
     private DefaultListModel<String>memberList = new DefaultListModel<>();
     private JList<String> jList = new JList<>(memberList);
+    private boolean nickAbleToChange =true ;
 
-    public ChatInterface(Socket socket, String serverAddress, Integer serverPort) {
+    public ChatInterface(Socket socket, String serverAddress, Integer serverPort,String nick) {
 
+        myNick=nick;
         try {
             connection(socket,serverAddress,serverPort);
         }
@@ -34,7 +38,7 @@ public class ChatInterface extends JFrame {
         }
 
         //задаем параметры окна
-        setTitle("Broadcast chat");
+        setTitle("Broadcast chat - "+myNick);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setSize(650,600);
         setPreferredSize(new Dimension(650,720));
@@ -69,6 +73,8 @@ public class ChatInterface extends JFrame {
         okButton.setBackground(elementsColor);
         JButton endButton =new JButton("End session");
         endButton.setBackground(elementsColor);
+        JButton changeNick = new JButton("Change NICK");
+        changeNick.setBackground(elementsColor);
 
         //Настройка листа с контактами
         jList.setBackground(elementsColor);
@@ -102,6 +108,13 @@ public class ChatInterface extends JFrame {
             send();
         });
 
+        //листенер смены ника
+        changeNick.addActionListener(e -> {
+            String result = JOptionPane.showInputDialog(this,
+                    "<html><h2>Enter new nick");
+            send("/change::"+result);
+        });
+
         //Закрываем сессию
         endButton.addActionListener(e-> {
         send("/end");
@@ -119,6 +132,7 @@ public class ChatInterface extends JFrame {
 
         //добавляем элементы в контейнеры
 
+        panLeft.add(changeNick);
         panLeft.add(jList,BorderLayout.NORTH);
         panCentr.add(scrollPane);
         panFoot.add(messageLine);
@@ -132,7 +146,7 @@ public class ChatInterface extends JFrame {
         setVisible(true);
     }
 
-    public void connection (Socket socketAuth,String serverAddress,Integer serverPort) throws IOException {
+    private void connection (Socket socketAuth,String serverAddress,Integer serverPort) throws IOException {
         dis = new DataInputStream(socketAuth.getInputStream());
         dos = new DataOutputStream(socketAuth.getOutputStream());
         send("/list");
@@ -142,19 +156,25 @@ public class ChatInterface extends JFrame {
                 while (true) {
                     String message = dis.readUTF();
                     if (message.equalsIgnoreCase("/finish")) {
-                        JOptionPane.showMessageDialog(new JDialog(),"Connection lost");
+                        JOptionPane.showMessageDialog(new JDialog(),"<HTML><h2>Connection lost");
                         new AutorityInterface();
                         this.dispose();
                         break;
                     }
-                    if(message.startsWith("/authok")){
-                        String[] arrNames = message.split("\\s");
-                        myNick=arrNames[1];
+                    else if (message.startsWith("/nickbusy")){
+                        nickAbleToChange=false;
+                        JOptionPane.showMessageDialog(new JDialog(),"<HTML><h2>This nick already used");
                     }
-                    if(message.startsWith("/list")){
+                    else if (message.startsWith("/nickchangeok")){
+                        String[] arr = message.split("::");
+                        myNick=arr[1];
+                        setTitle("Broadcast chat - "+myNick);
+                    }
+                    else if(message.startsWith("/list")){
                         memberList.clear();
                         addNewMemberToMembersList(message);
-                    }else if (!message.equals("")){
+                    }
+                    else if (!message.equals("")){
                     textArea.append(""+message + "\n");
                     }
                 }
@@ -164,7 +184,7 @@ public class ChatInterface extends JFrame {
         }).start();
     }
 
-    public void send() {
+    private void send() {
         if (messageLine.getText() != null && !messageLine.getText().trim().isEmpty()) {
             try {
                 if(jList.getSelectedValue()!=null&&!jList.getSelectedValue().equals(myNick)){
@@ -180,7 +200,7 @@ public class ChatInterface extends JFrame {
         }
     }
 
-    public void send(String endMessage) {
+    private void send(String endMessage) {
             try {
                 dos.writeUTF(endMessage);
                 messageLine.setText("");
@@ -189,13 +209,19 @@ public class ChatInterface extends JFrame {
     }
 
 
-    public void addNewMemberToMembersList(String message) throws IOException {
+    private void addNewMemberToMembersList(String message) throws IOException {
         String[] arrNames = message.split("::");
         for (int i =1 ; i<arrNames.length;i++) {
+            if(arrNames[i].equals(myNick)){
+                continue;
+            }
             memberList.addElement(arrNames[i]);
         }
         this.jList.repaint();
         this.jList.updateUI();
     }
+
+
+
 
 }

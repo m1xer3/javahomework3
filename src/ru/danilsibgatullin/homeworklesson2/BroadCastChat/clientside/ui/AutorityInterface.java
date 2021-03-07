@@ -1,6 +1,6 @@
 package ru.danilsibgatullin.homeworklesson2.BroadCastChat.clientside.ui;
 
-import ru.danilsibgatullin.homeworklesson1.BroadCastChat.clientside.ui.ChatInterface;
+import ru.danilsibgatullin.homeworklesson2.BroadCastChat.clientside.ui.ChatInterface;
 
 import javax.swing.*;
 import java.awt.*;
@@ -17,11 +17,12 @@ public class AutorityInterface extends JFrame {
     private final Color backgroundColor = Color.DARK_GRAY; // константа для стиля
     private JTextField logginField = new JTextField();
     private JPasswordField passwordField = new JPasswordField();
+    private String myNick=null;
     DataInputStream  dis;
     DataOutputStream dos;
     Socket socket;
     private boolean isAutorized = false;
-    JLabel picLabel = new JLabel(new ImageIcon("src/ru/danilsibgatullin/BroadCastChat/images/logo.png"));
+    JLabel picLabel = new JLabel(new ImageIcon("src/ru/danilsibgatullin/homeworklesson2/BroadCastChat/images/logo.png"));
 
 
     public AutorityInterface() throws IOException {
@@ -93,7 +94,7 @@ public class AutorityInterface extends JFrame {
                 try {
                     connection(server,port);
                     if(isAutorized){
-                    new ChatInterface(socket,server,port);
+                    new ChatInterface(socket,server,port,myNick);
                     setVisible(false);
                     }
                 } catch (IOException  e) {
@@ -143,10 +144,13 @@ public class AutorityInterface extends JFrame {
                 System.out.println(message);
                 if (message.startsWith("/authok")) {
                     isAutorized = true;
+                    String[] arr = message.split("\\s");
+                    myNick=arr[1];
+
                 } else if (message.startsWith("/nickbusy")){
-                    JOptionPane.showMessageDialog(new JDialog(), "Nick is busy");
+                    JOptionPane.showMessageDialog(new JDialog(), "<HTML><h2>Nick is busy");
                 }else {
-                    JOptionPane.showMessageDialog(new JDialog(), "Wrong Login or Password try agane");
+                    JOptionPane.showMessageDialog(new JDialog(), "<HTML><h2>Wrong Login or Password try agane");
                 }
             } catch (IOException ignored){
             }

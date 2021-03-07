@@ -1,6 +1,6 @@
 package ru.danilsibgatullin.homeworklesson2.BroadCastChat.serverside.services;
 
-import ru.danilsibgatullin.BroadCastChat.serverside.interfaces.AuthService;
+import ru.danilsibgatullin.homeworklesson2.BroadCastChat.serverside.interfaces.AuthService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,10 +9,7 @@ public class BaseAuthService implements AuthService {
     private List<Entry> entryList;
 
     public BaseAuthService() {
-        entryList = new ArrayList<>();
-        entryList.add(new Entry("David", "qazwsx", "One"));
-        entryList.add(new Entry("Viktor", "qwerty", "Two"));
-        entryList.add(new Entry("Vladimir", "123456", "Three"));
+
     }
 
     @Override
@@ -25,15 +22,7 @@ public class BaseAuthService implements AuthService {
         System.out.println("AuthService stop");
     }
 
-    @Override
-    public String getNickByLoginAndPassword(String login, String password) {
-        for (Entry e : entryList) {
-            if (e.login.equals(login) && e.password.equals(password)) {
-                return e.nick;
-            }
-        }
-        return null;
-    }
+
 
     private class Entry {
         private String login;
