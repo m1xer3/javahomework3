@@ -1,20 +1,16 @@
-package ru.danilsibgatullin.homeworklesson2.BroadCastChat.clientside.ui;
-
-import ru.danilsibgatullin.homeworklesson2.BroadCastChat.serverside.services.ClientHandler;
-import ru.danilsibgatullin.homeworklesson2.BroadCastChat.clientside.ui.AutorityInterface;
-import ru.danilsibgatullin.homeworklesson2.BroadCastChat.serverside.services.ConnectDB;
+package ru.danilsibgatullin.BroadCastChat.clientside.ui;
 
 import javax.swing.*;
 import java.awt.*;
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
+import java.io.*;
 import java.net.Socket;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.util.ArrayList;
+
 
 
 public class ChatInterface extends JFrame {
+
+    private static final int ROWS_TO_SHOW_ON_START = 100;
 
     final Color elementsColor = Color.lightGray; // константа для стиля
     final Color backgroundColor = Color.DARK_GRAY; // константа для стиля
@@ -26,6 +22,8 @@ public class ChatInterface extends JFrame {
     private DefaultListModel<String>memberList = new DefaultListModel<>();
     private JList<String> jList = new JList<>(memberList);
     private boolean nickAbleToChange =true ;
+    private File chatHistoryFile = new File("src/ru/danilsibgatullin/BroadCastChat/clientside/ui/chathistory.txt");
+
 
     public ChatInterface(Socket socket, String serverAddress, Integer serverPort,String nick) {
 
@@ -149,6 +147,8 @@ public class ChatInterface extends JFrame {
     private void connection (Socket socketAuth,String serverAddress,Integer serverPort) throws IOException {
         dis = new DataInputStream(socketAuth.getInputStream());
         dos = new DataOutputStream(socketAuth.getOutputStream());
+        FileOutputStream fos =new FileOutputStream(chatHistoryFile,true);
+        addLastMessagesToTextArea(ROWS_TO_SHOW_ON_START);
         send("/list");
         new Thread(() -> {
 
@@ -175,7 +175,9 @@ public class ChatInterface extends JFrame {
                         addNewMemberToMembersList(message);
                     }
                     else if (!message.equals("")){
-                    textArea.append(""+message + "\n");
+                        message = message+"\n";
+                        textArea.append(message);
+                        fos.write(message.getBytes()); // записываем в файл историю
                     }
                 }
             } catch (IOException ignored){
@@ -219,6 +221,36 @@ public class ChatInterface extends JFrame {
         }
         this.jList.repaint();
         this.jList.updateUI();
+    }
+
+    //загрузка истории из файла
+    private void addLastMessagesToTextArea(Integer stringNumber) throws IOException {
+        FileOutputStream fos =new FileOutputStream(chatHistoryFile,true);
+        FileReader reader =new FileReader(chatHistoryFile);
+        LineNumberReader lnr =new LineNumberReader(reader);
+        String historyMessage;
+        ArrayList<String> arrayList = new ArrayList<>();
+        while ((historyMessage = lnr.readLine()) != null) {
+            arrayList.add(historyMessage + "\n");
+        }
+        if (arrayList.size()<= stringNumber){
+            for (String s: arrayList) {
+                textArea.append(s);
+            }
+        }else
+        {
+            clearHistoryFile();
+            for (int i =arrayList.size()-stringNumber; i < arrayList.size(); i++){
+                textArea.append(arrayList.get(i));
+                fos.write(arrayList.get(i).getBytes());
+            }
+        }
+    }
+
+    //очистка файла
+    private void clearHistoryFile() throws IOException {
+        FileOutputStream fos =new FileOutputStream(chatHistoryFile);
+        fos.write("".getBytes());
     }
 
 

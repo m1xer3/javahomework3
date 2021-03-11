@@ -1,6 +1,6 @@
-package ru.danilsibgatullin.homeworklesson2.BroadCastChat.clientside.client3;
+package ru.danilsibgatullin.BroadCastChat.clientside.client3;
 
-import ru.danilsibgatullin.homeworklesson2.BroadCastChat.clientside.ui.AutorityInterface;
+import ru.danilsibgatullin.BroadCastChat.clientside.ui.AutorityInterface;
 
 import javax.swing.*;
 import java.io.IOException;

@@ -1,4 +1,4 @@
-package ru.danilsibgatullin.homeworklesson2.BroadCastChat.serverside.services;
+package ru.danilsibgatullin.BroadCastChat.serverside.services;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

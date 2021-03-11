@@ -1,6 +1,4 @@
-package ru.danilsibgatullin.homeworklesson2.BroadCastChat.serverside.services;
-
-import ru.danilsibgatullin.homeworklesson2.BroadCastChat.serverside.services.MyServer;
+package ru.danilsibgatullin.BroadCastChat.serverside.services;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;

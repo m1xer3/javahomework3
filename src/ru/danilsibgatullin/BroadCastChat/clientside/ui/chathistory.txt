@@ -1,0 +1,10 @@
+killer-next: 2
+killer-next: 3
+killer-next: 4
+killer-next: 5
+killer-next: 6
+killer-next: 7
+killer-next: 8
+killer-next: 9
+killer-next: 0
+User killer-next change nick to killer
