@@ -2,12 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7ef858f3-a527-422c-b238-5852098f6d51" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/ru/danilsibgatullin/homeworklesson2/AppStart.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ru/danilsibgatullin/homeworklesson2/services/PrintChar.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/ru/danilsibgatullin/homeworklesson5/AppStart.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/ru/danilsibgatullin/homeworklesson5/service/Car.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/ru/danilsibgatullin/homeworklesson5/service/Race.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/ru/danilsibgatullin/homeworklesson5/service/Road.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/ru/danilsibgatullin/homeworklesson5/service/Stage.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/ru/danilsibgatullin/homeworklesson5/service/Tunnel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ru/danilsibgatullin/BroadCastChat/clientside/ui/chathistory.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/ru/danilsibgatullin/BroadCastChat/clientside/ui/chathistory.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ru/danilsibgatullin/BroadCastChat/serverside/services/ClientHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ru/danilsibgatullin/BroadCastChat/serverside/services/ClientHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ru/danilsibgatullin/BroadCastChat/serverside/services/MyServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ru/danilsibgatullin/BroadCastChat/serverside/services/MyServer.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,7 +26,9 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1pAaddDRqm5pZQPs0jBJHD6Xdte" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -52,13 +55,13 @@
       <recent name="ru.danilsibgatullin.homeworklesson1" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.MainClientApp (2)">
-    <configuration name="AppStart" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="ru.danilsibgatullin.homeworklesson2.AppStart" />
+  <component name="RunManager" selected="Application.AppStart (1)">
+    <configuration name="AppStart (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="ru.danilsibgatullin.homeworklesson5.AppStart" />
       <module name="javahomework3" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="ru.danilsibgatullin.homeworklesson2.*" />
+          <option name="PATTERN" value="ru.danilsibgatullin.homeworklesson5.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -66,12 +69,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="MainClientApp (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="ru.danilsibgatullin.homeworklesson2.BroadCastChat.clientside.client2.MainClientApp" />
+    <configuration name="AppStart" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="ru.danilsibgatullin.homeworklesson2.AppStart" />
       <module name="javahomework3" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="ru.danilsibgatullin.homeworklesson2.BroadCastChat.clientside.client2.*" />
+          <option name="PATTERN" value="ru.danilsibgatullin.homeworklesson2.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -120,11 +123,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.AppStart (1)" />
+        <item itemvalue="Application.AppStart" />
         <item itemvalue="Application.MainClientApp (2)" />
         <item itemvalue="Application.MainServerApp (1)" />
         <item itemvalue="Application.MainClientApp (3)" />
-        <item itemvalue="Application.AppStart" />
-        <item itemvalue="Application.MainClientApp (1)" />
       </list>
     </recent_temporary>
   </component>
@@ -156,7 +159,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/ru/danilsibgatullin/BroadCastChat/serverside/services/ClientHandler.java</url>
-          <line>84</line>
+          <line>83</line>
           <option name="timeStamp" value="3" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
