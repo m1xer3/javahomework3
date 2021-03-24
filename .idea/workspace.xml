@@ -1,14 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="7ef858f3-a527-422c-b238-5852098f6d51" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/ru/danilsibgatullin/homeworklesson5/AppStart.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ru/danilsibgatullin/homeworklesson5/service/Car.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ru/danilsibgatullin/homeworklesson5/service/Race.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ru/danilsibgatullin/homeworklesson5/service/Road.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ru/danilsibgatullin/homeworklesson5/service/Stage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ru/danilsibgatullin/homeworklesson5/service/Tunnel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application-20210323.log" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/log4j2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/ru/danilsibgatullin/homeworklesson6/AppStart.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/ru/danilsibgatullin/homeworklesson6/services/ArrayAction.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test/homeworklesson6/ArrayActionTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javahomework3.iml" beforeDir="false" afterPath="$PROJECT_DIR$/javahomework3.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/javahomework3/ru/danilsibgatullin/homeworklesson1/exercise1_2/AppStart.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/javahomework3/ru/danilsibgatullin/homeworklesson1/exercise1_2/services/ArrayProcessing.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/javahomework3/ru/danilsibgatullin/homeworklesson1/exercise3/AppStart.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/javahomework3/ru/danilsibgatullin/homeworklesson1/exercise3/models/Apple.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/javahomework3/ru/danilsibgatullin/homeworklesson1/exercise3/models/Box.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/javahomework3/ru/danilsibgatullin/homeworklesson1/exercise3/models/Fruit.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/javahomework3/ru/danilsibgatullin/homeworklesson1/exercise3/models/Orange.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ru/danilsibgatullin/BroadCastChat/clientside/ui/chathistory.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/ru/danilsibgatullin/BroadCastChat/clientside/ui/chathistory.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ru/danilsibgatullin/BroadCastChat/serverside/services/BaseAuthService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ru/danilsibgatullin/BroadCastChat/serverside/services/BaseAuthService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ru/danilsibgatullin/BroadCastChat/serverside/services/ClientHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ru/danilsibgatullin/BroadCastChat/serverside/services/ClientHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ru/danilsibgatullin/BroadCastChat/serverside/services/MyServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ru/danilsibgatullin/BroadCastChat/serverside/services/MyServer.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,28 +50,35 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="Downloaded.Files.Path.Enabled" value="true" />
+    <property name="Repository.Attach.Annotations" value="false" />
+    <property name="Repository.Attach.JavaDocs" value="false" />
+    <property name="Repository.Attach.Sources" value="false" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/ru/danilsibgatullin/BroadCastChat/clientside/client3" />
-    <property name="project.structure.last.edited" value="Libraries" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/test" />
+    <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
-    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="project.structure.side.proportion" value="0.40689656" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\javahomework\javahomework3\src\ru\danilsibgatullin\BroadCastChat\clientside\client3" />
-      <recent name="D:\javahomework\javahomework3\src\ru\danilsibgatullin\BroadCastChat\clientside\client2" />
-      <recent name="D:\javahomework\javahomework3\src\ru\danilsibgatullin\homeworklesson2" />
-      <recent name="D:\javahomework\javahomework3\src\ru\danilsibgatullin\homeworklesson1" />
+      <recent name="D:\javahomework\javahomework3\test" />
+      <recent name="D:\javahomework\javahomework3\src\main\resources" />
+      <recent name="D:\javahomework\javahomework3\src\ru\danilsibgatullin\BroadCastChat\serverside\resources" />
+      <recent name="D:\javahomework\javahomework3\src\ru\danilsibgatullin\BroadCastChat\serverside\services" />
       <recent name="D:\javahomework\javahomework3" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="ru" />
+      <recent name="main" />
       <recent name="ru.danilsibgatullin.BroadCastChat.clientside" />
       <recent name="ru.danilsibgatullin.homeworklesson1.exercise3" />
       <recent name="ru.danilsibgatullin.homeworklesson1" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.AppStart (1)">
+  <component name="RunManager" selected="JUnit.ArrayActionTest">
     <configuration name="AppStart (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="ru.danilsibgatullin.homeworklesson5.AppStart" />
       <module name="javahomework3" />
@@ -69,20 +92,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="AppStart" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="ru.danilsibgatullin.homeworklesson2.AppStart" />
-      <module name="javahomework3" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="ru.danilsibgatullin.homeworklesson2.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="MainClientApp (2)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+    <configuration name="MainClientApp (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="ru.danilsibgatullin.BroadCastChat.clientside.client2.MainClientApp" />
       <module name="javahomework3" />
       <extension name="coverage">
@@ -95,7 +105,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="MainClientApp (3)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+    <configuration name="MainClientApp" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="ru.danilsibgatullin.BroadCastChat.clientside.client1.MainClientApp" />
       <module name="javahomework3" />
       <extension name="coverage">
@@ -108,7 +118,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="MainServerApp (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+    <configuration name="MainServerApp" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="ru.danilsibgatullin.BroadCastChat.serverside.MainServerApp" />
       <module name="javahomework3" />
       <extension name="coverage">
@@ -121,13 +131,42 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="ArrayActionTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="javahomework3" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="homeworklesson6.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="homeworklesson6" />
+      <option name="MAIN_CLASS_NAME" value="homeworklesson6.ArrayActionTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ArrayActionTest.returnNumbersAfterConstTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="javahomework3" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="homeworklesson6.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="homeworklesson6" />
+      <option name="MAIN_CLASS_NAME" value="homeworklesson6.ArrayActionTest" />
+      <option name="METHOD_NAME" value="returnNumbersAfterConstTest" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.AppStart (1)" />
-        <item itemvalue="Application.AppStart" />
-        <item itemvalue="Application.MainClientApp (2)" />
-        <item itemvalue="Application.MainServerApp (1)" />
-        <item itemvalue="Application.MainClientApp (3)" />
+        <item itemvalue="JUnit.ArrayActionTest" />
+        <item itemvalue="JUnit.ArrayActionTest.returnNumbersAfterConstTest" />
+        <item itemvalue="Application.MainClientApp (1)" />
       </list>
     </recent_temporary>
   </component>
@@ -154,12 +193,15 @@
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+  </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/ru/danilsibgatullin/BroadCastChat/serverside/services/ClientHandler.java</url>
-          <line>83</line>
+          <line>88</line>
           <option name="timeStamp" value="3" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
@@ -167,6 +209,25 @@
           <line>235</line>
           <option name="timeStamp" value="5" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/ru/danilsibgatullin/BroadCastChat/serverside/services/MyServer.java</url>
+          <line>60</line>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/ru/danilsibgatullin/homeworklesson6/services/ArrayAction.java</url>
+          <line>25</line>
+          <option name="timeStamp" value="9" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/ru/danilsibgatullin/homeworklesson6/services/ArrayAction.java</url>
+          <line>20</line>
+          <option name="timeStamp" value="10" />
+        </line-breakpoint>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.RuntimeException" package="java.lang" />
+          <option name="timeStamp" value="8" />
+        </breakpoint>
       </breakpoints>
     </breakpoint-manager>
     <watches-manager>

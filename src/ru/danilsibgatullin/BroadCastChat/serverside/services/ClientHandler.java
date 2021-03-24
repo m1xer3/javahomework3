@@ -1,5 +1,8 @@
 package ru.danilsibgatullin.BroadCastChat.serverside.services;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -23,6 +26,7 @@ public class ClientHandler {
     private boolean shouldKillTimeoutMessage;
     private String name;
     private final ExecutorService execPool= Executors.newCachedThreadPool(); // добавление запуска потоков чере ExecutorService
+    private static final Logger logger = LogManager.getLogger(ClientHandler.class);
 
 
     public ClientHandler(MyServer myServer, Socket socket) {
@@ -54,9 +58,9 @@ public class ClientHandler {
             myServer.addExecuteTreadInExecPool(new Thread(() -> {
                 try {
                     Thread.sleep(30000);
-                    System.out.println("Stream up");
+                    logger.info("Stream up");
                     if (!isAuthorized) {
-                        System.out.println("Timeout close connection");
+                        logger.warn("Timeout close connection");
                         closeConnection();
                     }
                 } catch (InterruptedException e) {
@@ -67,6 +71,7 @@ public class ClientHandler {
 
         } catch (IOException e) {
             closeConnection();
+            logger.fatal("Problem with ClientHandler");
             throw new RuntimeException("Problem with ClientHandler");
         }
     }
@@ -95,7 +100,7 @@ public class ClientHandler {
                     }
 
                 } else {
-                    System.out.println("Client access deny");
+                    logger.warn("Client access deny");
                     sendMessage("Wrong login and password");
                 }
             }
@@ -104,11 +109,10 @@ public class ClientHandler {
     public void readMessage() throws IOException {
         while (true) {
             try {
-                //TODO как через ExecutroService отсановить 1 конкретный поток
                 Thread tread = new Thread(()->{
                     try {
                         Thread.sleep(30000);
-                        System.out.println("Timeout for enter message");
+                        logger.warn("Timeout for enter message");
                         if(shouldKillTimeoutMessage){
                             sendMessage("/finish");
                             isTimeOutCloseConnection=true;
@@ -122,11 +126,11 @@ public class ClientHandler {
                 shouldKillTimeoutMessage=true;
                 String messageFromClient = dis.readUTF();
                 shouldKillTimeoutMessage=false;
-                    f1.cancel(true);
-                System.out.println(name + " send message " + messageFromClient);
+                f1.cancel(true);
+                logger.info(name + " send message " + messageFromClient);
                 if(messageFromClient.startsWith("/")) {
                     if (messageFromClient.equals("/end")) {
-                        System.out.println("Client live server");
+                        logger.info("Client live server");
                         return;
                     }
                     if (messageFromClient.startsWith("/w")) {
@@ -141,6 +145,7 @@ public class ClientHandler {
                         String oldNick = name;
                         changeUserNick(arr[1]);
                         myServer.getChatMembers();
+                        logger.info("User "+oldNick+" change nick to " + name);
                         myServer.broadcastMessage("User "+oldNick+" change nick to " + name);
                     }
                 }
@@ -148,7 +153,8 @@ public class ClientHandler {
                     myServer.broadcastMessage(name + ": " + messageFromClient);
                 }
             }catch (SocketException e){
-                System.out.println("Client live server");
+                //System.out.println("Client live server");
+                logger.info("Client live server");
                 return;
             }
         }
@@ -163,6 +169,7 @@ public class ClientHandler {
 
     private void closeConnection() {
         myServer.unsubscribe(this);
+        logger.info(name + " Leave chat");
         myServer.broadcastMessage(name + " Leave chat");
         try {
             dis.close();
