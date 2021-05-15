@@ -1,13 +1,10 @@
-package ru.danilsibgatullin.homeworklesson2.BroadCastChat.serverside.services;
+package ru.danilsibgatullin.BroadCastChat.serverside.services;
 
-import ru.danilsibgatullin.homeworklesson2.BroadCastChat.serverside.interfaces.AuthService;
-import ru.danilsibgatullin.homeworklesson2.BroadCastChat.serverside.services.BaseAuthService;
-import ru.danilsibgatullin.homeworklesson2.BroadCastChat.serverside.services.ClientHandler;
+import ru.danilsibgatullin.BroadCastChat.serverside.interfaces.AuthService;
 
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 

@@ -1,6 +1,4 @@
-package ru.danilsibgatullin.homeworklesson2.BroadCastChat.clientside.ui;
-
-import ru.danilsibgatullin.homeworklesson2.BroadCastChat.clientside.ui.ChatInterface;
+package ru.danilsibgatullin.BroadCastChat.clientside.ui;
 
 import javax.swing.*;
 import java.awt.*;
@@ -22,7 +20,7 @@ public class AutorityInterface extends JFrame {
     DataOutputStream dos;
     Socket socket;
     private boolean isAutorized = false;
-    JLabel picLabel = new JLabel(new ImageIcon("src/ru/danilsibgatullin/homeworklesson2/BroadCastChat/images/logo.png"));
+    JLabel picLabel = new JLabel(new ImageIcon("src/ru/danilsibgatullin/BroadCastChat/clientside/images/logo.png"));
 
 
     public AutorityInterface() throws IOException {

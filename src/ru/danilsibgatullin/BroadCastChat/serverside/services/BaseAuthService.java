@@ -1,8 +1,7 @@
-package ru.danilsibgatullin.homeworklesson2.BroadCastChat.serverside.services;
+package ru.danilsibgatullin.BroadCastChat.serverside.services;
 
-import ru.danilsibgatullin.homeworklesson2.BroadCastChat.serverside.interfaces.AuthService;
+import ru.danilsibgatullin.BroadCastChat.serverside.interfaces.AuthService;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class BaseAuthService implements AuthService {
