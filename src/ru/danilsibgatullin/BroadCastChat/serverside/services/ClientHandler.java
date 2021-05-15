@@ -8,6 +8,9 @@ import java.net.SocketException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 
 
 public class ClientHandler {
@@ -17,8 +20,10 @@ public class ClientHandler {
     private DataOutputStream dos;
     private boolean isAuthorized;
     private boolean isTimeOutCloseConnection;
-    private boolean shouldKillTimeoutMessgae;
+    private boolean shouldKillTimeoutMessage;
     private String name;
+    private final ExecutorService execPool= Executors.newCachedThreadPool(); // добавление запуска потоков чере ExecutorService
+
 
     public ClientHandler(MyServer myServer, Socket socket) {
         try {
@@ -29,7 +34,7 @@ public class ClientHandler {
             this.dos = new DataOutputStream(socket.getOutputStream());
             this.name = "";
 
-            new Thread(() -> {
+            myServer.addExecuteTreadInExecPool(new Thread(() -> {
                 try {
                     authentication();
                     if (isAuthorized){
@@ -39,27 +44,26 @@ public class ClientHandler {
                     ignored.printStackTrace();
                 } finally {
                     if(!isTimeOutCloseConnection){
-                    closeConnection();
+                        closeConnection();
                     }
                 }
-
-            }).start();
+            }));
             /*Закрываем соединение на стороне сервера если прошло 120 секунд
             * после подключения но пользователь не авторизовался
             */
-            new Thread(() -> {
+            myServer.addExecuteTreadInExecPool(new Thread(() -> {
                 try {
-                    Thread.sleep(120000);
-                System.out.println("Stream up");
-                if (!isAuthorized) {
-                    System.out.println("Timeout close connection");
-                    closeConnection();
-                }
+                    Thread.sleep(30000);
+                    System.out.println("Stream up");
+                    if (!isAuthorized) {
+                        System.out.println("Timeout close connection");
+                        closeConnection();
+                    }
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
             }
-            ).start();
+            ));
 
         } catch (IOException e) {
             closeConnection();
@@ -67,7 +71,7 @@ public class ClientHandler {
         }
     }
 
-    //TODO проверка авторизации через БД
+
     public void authentication() throws IOException {
 
             String str = dis.readUTF();
@@ -100,12 +104,12 @@ public class ClientHandler {
     public void readMessage() throws IOException {
         while (true) {
             try {
-
+                //TODO как через ExecutroService отсановить 1 конкретный поток
                 Thread tread = new Thread(()->{
                     try {
-                        Thread.sleep(1800000);
+                        Thread.sleep(30000);
                         System.out.println("Timeout for enter message");
-                        if(shouldKillTimeoutMessgae){
+                        if(shouldKillTimeoutMessage){
                             sendMessage("/finish");
                             isTimeOutCloseConnection=true;
                             closeConnection();
@@ -114,13 +118,11 @@ public class ClientHandler {
                     } catch (InterruptedException ignore) {
                     }
                 });
-                tread.start();
-                shouldKillTimeoutMessgae=true;
+                Future f1 = myServer.addSubmitTreadInExecPool(tread);
+                shouldKillTimeoutMessage=true;
                 String messageFromClient = dis.readUTF();
-                shouldKillTimeoutMessgae=false;
-                if(tread.isAlive()){
-                    tread.interrupt();
-                }
+                shouldKillTimeoutMessage=false;
+                    f1.cancel(true);
                 System.out.println(name + " send message " + messageFromClient);
                 if(messageFromClient.startsWith("/")) {
                     if (messageFromClient.equals("/end")) {

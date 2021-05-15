@@ -1,5 +1,6 @@
 package ru.danilsibgatullin.BroadCastChat.serverside.services;
 
+
 import ru.danilsibgatullin.BroadCastChat.serverside.interfaces.AuthService;
 
 import java.io.IOException;
@@ -7,6 +8,10 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+
 
 public class MyServer {
 
@@ -14,11 +19,27 @@ public class MyServer {
 
     private List<ClientHandler> clients;
 
+    private final ExecutorService execPool= Executors.newCachedThreadPool(); // добавление запуска потоков чере ExecutorService
+
     private AuthService authService;
 
     public AuthService getAuthService() {
         return this.authService;
     }
+
+    public ExecutorService getExecPool(){
+        return execPool;
+    }
+
+    public void addExecuteTreadInExecPool(Thread t){
+        execPool.execute(t);
+    }
+
+    public Future addSubmitTreadInExecPool(Thread t){
+
+       return  execPool.submit(t);
+    }
+
 
     public MyServer() {
         try (ServerSocket server = new ServerSocket(PORT)){
@@ -42,6 +63,7 @@ public class MyServer {
             if (authService != null) {
                 authService.stop();
             }
+            execPool.shutdown();
         }
     }
 
