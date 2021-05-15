@@ -1,6 +1,8 @@
 package ru.danilsibgatullin.BroadCastChat.serverside.services;
 
 
+
+
 import ru.danilsibgatullin.BroadCastChat.serverside.interfaces.AuthService;
 
 import java.io.IOException;
@@ -11,9 +13,14 @@ import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
-
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class MyServer {
+
+    private static final Logger logger = LogManager.getLogger(MyServer.class);
+
+
 
     private final int PORT = 8081;
 
@@ -50,15 +57,19 @@ public class MyServer {
             clients = new ArrayList<>();
 
             while (true) {
-                System.out.println("Server wait connection");
+                //System.out.println("Server wait connection");
+                logger.info("Server wait connection");
                 Socket socket = server.accept();
-                System.out.println(socket.getInetAddress().getCanonicalHostName());
-                System.out.println("Client join");
+                //System.out.println(socket.getInetAddress().getCanonicalHostName());
+                logger.info(socket.getInetAddress().getCanonicalHostName());
+                //System.out.println("Client join");
+                logger.info("Client join");
                 new ClientHandler(this, socket);
             }
 
         } catch (IOException e){
-            System.out.println("Server fatal error");
+            //System.out.println("Server fatal error");
+            logger.error("Server fatal error");
         } finally {
             if (authService != null) {
                 authService.stop();
